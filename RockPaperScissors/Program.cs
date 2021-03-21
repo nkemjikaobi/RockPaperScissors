@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace RockPaperScissors
@@ -9,16 +10,13 @@ namespace RockPaperScissors
         {
             Console.WriteLine("Welcome to the Rock Paper Scissors game");
             GreetUser();
-            Console.WriteLine("To choose rock enter R");
-            Console.WriteLine("To choose paper enter P");
-            Console.WriteLine("To choose scissors enter S");
+            Options();
 
             var userScore = 0;
             var computerScore = 0;
 
             string userChoice = null;
-            string computerChoice = "paper";
-
+            
             while (true)
             {
                 var input = Console.ReadLine()?.ToUpper();
@@ -37,6 +35,19 @@ namespace RockPaperScissors
                         Console.WriteLine("No choice detected");
                         break;
                 }
+                
+                //Computer Choice
+                var options = new List<string>
+                {
+                    "rock",
+                    "paper",
+                    "scissors"
+                };
+          
+                //Computer randomly chooses an option
+                var random = new Random();
+                var index = random.Next(options.Count);
+                var computerChoice = options[index];
 
                 //Check the user and computers choice
 
@@ -86,6 +97,23 @@ namespace RockPaperScissors
 
                 Console.WriteLine("Your score: {0} vs Computer Score: {1}", userScore, computerScore);
 
+            }
+        }
+
+        private static void Options()
+        {
+            //Display options
+            var options = new List<string>
+            {
+                "To choose rock enter R",
+                "To choose paper enter P",
+                "To choose scissors enter S"
+            };
+
+            //Loop through options
+            foreach (var option in options)
+            {
+                Console.WriteLine(option);
             }
         }
 
